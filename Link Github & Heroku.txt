@@ -1,0 +1,3 @@
+
+Github link		: https://github.com/daveFrizky/Payment_Detail
+Heroku link		: https://app-payment-final.herokuapp.com/api/Register
