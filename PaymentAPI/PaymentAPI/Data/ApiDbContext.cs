@@ -11,7 +11,7 @@ namespace PaymentAPI.Data
      public class ApiDbContext : IdentityDbContext
     {
         public virtual DbSet<Payment_details> Items { get; set; }
-        public virtual DbSet<RefreshToken> RefreshToken { get; set; }
+       
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
         }
