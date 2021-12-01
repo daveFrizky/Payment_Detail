@@ -18,8 +18,8 @@ using PaymentAPI.Models.DTOs.Responses;
 
 namespace PaymentAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class AuthManagementController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
