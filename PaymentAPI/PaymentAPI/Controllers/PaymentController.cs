@@ -15,50 +15,79 @@ namespace PaymentAPI.Controllers
    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PaymentController : ControllerBase
     {
-        private paymentDetailContext _context;
+        private ApiDbContext _context;
 
-        public PaymentController(paymentDetailContext context)
+        public PaymentController(ApiDbContext context)
         {
             _context = context;
         }
 
         [HttpGet(Name = "Get All")]
-        public ActionResult<IEnumerable<Payment_details>> GetEmployeeItems()
+        public async Task<ActionResult> GetPaymentDetailsItems()
         {
-            _context = HttpContext.RequestServices.GetService(typeof(paymentDetailContext)) as paymentDetailContext;
-            return _context.GetAllPayment();
+            var pd = await _context.Payment_Details.ToListAsync();
+            return Ok(pd);
         }
 
-        [HttpGet("{id}", Name = "Get where")]
-        public ActionResult<IEnumerable<Payment_details>> GetEmployeeItem(String id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            _context = HttpContext.RequestServices.GetService(typeof(paymentDetailContext)) as paymentDetailContext;
-            return _context.GetPaymentById(id);
+            var item = await _context.Payment_Details.FirstOrDefaultAsync(x => x.PaymentDetailId == id);
 
+            if (item == null)
+                return NotFound();
+
+            return Ok(item);
         }
 
-        [HttpPost(Name = "Add PaymentDetail")]
-        public ActionResult<string> AddMovies(Payment_details item)
+        [HttpPost]
+        public async Task<IActionResult> CreateItem(Payment_details data)
         {
-            _context = HttpContext.RequestServices.GetService(typeof(paymentDetailContext)) as paymentDetailContext;
-            return _context.AddPaymentDetail(item);
+            if (ModelState.IsValid)
+            {
+                await _context.Payment_Details.AddAsync(data);
+                await _context.SaveChangesAsync();
 
+                return new JsonResult("Data Added!");
+            }
+
+            return new JsonResult("Something went worng") { StatusCode = 500 };
         }
 
-        [HttpPut("{id}", Name = "Update payment_detail By Id")]
-        public ActionResult<string> UpdateMoviesById(string id, Payment_details item)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateItem(int id, Payment_details item)
         {
-            _context = HttpContext.RequestServices.GetService(typeof(paymentDetailContext)) as paymentDetailContext;
-            return _context.UpdateById(id, item);
+            if (id != item.PaymentDetailId)
+                return BadRequest();
 
+            var exsitItem = await _context.Payment_Details.FirstOrDefaultAsync(x => x.PaymentDetailId == id);
+
+            if (exsitItem == null)
+                return NotFound();
+
+            exsitItem.PaymentDetailId = item.PaymentDetailId;
+            exsitItem.cardOwnerName = item.cardOwnerName;
+            exsitItem.cardNumber = item.cardNumber;
+            exsitItem.expirationDate = item.expirationDate;
+            exsitItem.securityCode = item.securityCode;
+
+            await _context.SaveChangesAsync();
+
+           return new JsonResult("Data Updated!");
         }
 
-        [HttpDelete("{id}", Name = "Delete payment_detail By Id")]
-        public ActionResult<string> DeleteMoviesById(string id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem(int id)
         {
-            _context = HttpContext.RequestServices.GetService(typeof(paymentDetailContext)) as paymentDetailContext;
-            return _context.DeleteById(id);
+            var exsitItem = await _context.Payment_Details.FirstOrDefaultAsync(x => x.PaymentDetailId == id);
 
+            if (exsitItem == null)
+                return NotFound();
+
+            _context.Payment_Details.Remove(exsitItem);
+            await _context.SaveChangesAsync();
+
+            return Ok(exsitItem);
         }
     }
 }

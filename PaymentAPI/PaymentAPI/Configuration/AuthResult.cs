@@ -7,6 +7,7 @@ namespace PaymentAPI.Configuration
 {
     public class AuthResult
     {
+        [System.Text.Json.Serialization.JsonIgnore]
         public string Token { get; set; }
         public string RefreshToken { get; set; }
         public bool Success { get; set; }

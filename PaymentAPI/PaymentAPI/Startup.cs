@@ -1,9 +1,11 @@
+using System;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,13 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using PaymentAPI.Configuration;
 using PaymentAPI.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace PaymentAPI
 {
@@ -35,9 +34,10 @@ namespace PaymentAPI
         {
 
             services.AddDbContext<ApiDbContext>(options =>
-                 options.UseSqlite(Configuration.GetConnectionString("JWTToken")));
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 11))));
 
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
+           // services.AddControllers().AddJsonOptions(x =>x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddControllers();
             var key = Encoding.ASCII.GetBytes(Configuration["JwtConfig:Secret"]);
             var tokenValidationParams = new TokenValidationParameters
@@ -69,7 +69,7 @@ namespace PaymentAPI
             services.AddDefaultIdentity<IdentityUser>(options =>options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApiDbContext>();
 
-            services.Add(new ServiceDescriptor(typeof(Models.paymentDetailContext), new Models.paymentDetailContext(Configuration.GetConnectionString("DefaultConnection"))));
+           // services.Add(new ServiceDescriptor(typeof(Models.paymentDetailContext), new Models.paymentDetailContext(Configuration.GetConnectionString("DefaultConnection"))));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentAPI", Version = "v1" });

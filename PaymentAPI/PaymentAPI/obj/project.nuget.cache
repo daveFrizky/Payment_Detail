@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8+qO81fJ0SAWMNJaBAejSRzAVTmBTU/13O7Pamb5f+HPyHnxWxx/nonIULS2blkkKd1WiDh77yLyxBzgCLF3OA==",
+  "dgSpecHash": "H7SGuWiHV983rdVmvOFIu6UW834ZYtSkPSbUHVWFpg2dCf9mSJcwBoW0or84ghAW0JmrSaq4dRKCY+Ri+Rrx4A==",
   "success": true,
   "projectFilePath": "C:\\Users\\dbatz\\Documents\\Heroku\\PaymentAPI\\PaymentAPI\\PaymentAPI.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,8 @@
     "C:\\Users\\dbatz\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
     "C:\\Users\\dbatz\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\dbatz\\.nuget\\packages\\mysql.data\\8.0.27\\mysql.data.8.0.27.nupkg.sha512",
+    "C:\\Users\\dbatz\\.nuget\\packages\\mysqlconnector\\1.3.13\\mysqlconnector.1.3.13.nupkg.sha512",
+    "C:\\Users\\dbatz\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\5.0.2\\pomelo.entityframeworkcore.mysql.5.0.2.nupkg.sha512",
     "C:\\Users\\dbatz\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\dbatz\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\dbatz\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",

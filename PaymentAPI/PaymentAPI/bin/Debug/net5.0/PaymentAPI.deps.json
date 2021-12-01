@@ -36,10 +36,12 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.12",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.12",
           "Microsoft.AspNetCore.Identity.UI": "5.0.12",
+          "Microsoft.EntityFrameworkCore.Design": "5.0.12",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
           "MySql.Data": "8.0.27",
+          "Pomelo.EntityFrameworkCore.MySql": "5.0.2",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -822,6 +824,33 @@
           "lib/net5.0/MySql.Data.dll": {},
           "lib/net5.0/Ubiety.Dns.Core.dll": {},
           "lib/net5.0/ZstdNet.dll": {}
+        }
+      },
+      "MySqlConnector/1.3.13": {
+        "runtime": {
+          "lib/net5.0/MySqlConnector.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.3.13.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/MySqlConnector.dll": {}
+        }
+      },
+      "Pomelo.EntityFrameworkCore.MySql/5.0.2": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
+          "Microsoft.Extensions.DependencyInjection": "5.0.2",
+          "MySqlConnector": "1.3.13"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Pomelo.EntityFrameworkCore.MySql.dll": {
+            "assemblyVersion": "5.0.2.0",
+            "fileVersion": "5.0.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Pomelo.EntityFrameworkCore.MySql.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_e_sqlite3/2.0.4": {
@@ -3084,6 +3113,20 @@
       "sha512": "sha512-Ef+sH12/nGAiF9yLZFkuXh7vtVvEPiLKyZNJiDk+VBULzLcXj0lmfU7qcmWNCSVX5n6zu5jMV+JaNf1C+a+T8g==",
       "path": "mysql.data/8.0.27",
       "hashPath": "mysql.data.8.0.27.nupkg.sha512"
+    },
+    "MySqlConnector/1.3.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o1qsijkFGvTslpuQdcJwG6IvdNOiVL7fRqvFZ0LTg04kfz+IzzwSWj4YwgTe0q0C3p0WqgaDXui5OEx6qgwebg==",
+      "path": "mysqlconnector/1.3.13",
+      "hashPath": "mysqlconnector.1.3.13.nupkg.sha512"
+    },
+    "Pomelo.EntityFrameworkCore.MySql/5.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Vy6nC+FWWyZujmzEUN2mqoKsZi4xawtcJ8PJ861X7BG7EnJl+zH9uBvCCcO/qFOkS9zSCvWtYul3aFQOAJuGyA==",
+      "path": "pomelo.entityframeworkcore.mysql/5.0.2",
+      "hashPath": "pomelo.entityframeworkcore.mysql.5.0.2.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.4": {
       "type": "package",
