@@ -61,7 +61,7 @@ namespace PaymentAPI.Controllers
                 var isCreated = await _userManager.CreateAsync(newUser, user.Password);
                 if (isCreated.Succeeded)
                 {
-                    var jwtToken = GenerateJwtToken(newUser);
+                    var jwtToken = await GenerateJwtToken(newUser);
 
                     return Ok(jwtToken);
                 }
@@ -164,7 +164,7 @@ namespace PaymentAPI.Controllers
                     });
                 }
 
-                var jwtToken = GenerateJwtToken(existingUser);
+                var jwtToken = await GenerateJwtToken(existingUser);
 
                 return Ok(jwtToken);
             }
