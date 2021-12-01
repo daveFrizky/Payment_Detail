@@ -82,7 +82,7 @@ namespace PaymentAPI.Models
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(
-                    $"INSERT INTO payment_detail VALUES ('{item.cardOwnerName}','{item.cardNumber}','{item.expirationDate}" +
+                    $"INSERT INTO payment_detail (cardOwnerName,cardNumber,expirationDate,securityCode) VALUES ('{item.cardOwnerName}','{item.cardNumber}','{item.expirationDate}" +
                     $"','{item.securityCode}')", conn);
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
