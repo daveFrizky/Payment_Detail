@@ -99,7 +99,7 @@ namespace PaymentAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
@@ -122,9 +122,10 @@ namespace PaymentAPI.Controllers
             await _apiDbContext.SaveChangesAsync();
             return new AuthResult()
             {
+                username=user.UserName,
                 Token = jwtToken,
                 Success = true,
-                RefreshToken = refreshToken.Token
+                RefreshToken = refreshToken.Token,
             };
         }
 
