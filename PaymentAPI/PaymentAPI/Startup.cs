@@ -36,6 +36,7 @@ namespace PaymentAPI
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 11))));
 
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
+            services.AddCors();
             services.AddControllers();
             var key = Encoding.ASCII.GetBytes(Configuration["JwtConfig:Secret"]);
             var tokenValidationParams = new TokenValidationParameters
@@ -111,6 +112,11 @@ namespace PaymentAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseAuthorization();
 
